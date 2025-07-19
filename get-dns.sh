@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#This script will pull ALL domain records for the specified domain in the *secrets* file
 source ./secrets
 
 response=$(curl \
@@ -9,4 +9,4 @@ response=$(curl \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   "https://api.digitalocean.com/v2/domains/$DOMAIN/records")
 
-echo "$response" | grep -Eo '"id":\d*|"type":"\w*"|"name":"\w*"|"data":".*?"'
+echo "$response" | grep -Po '"id":\d*|"type":"\w*"|"name":"\w*"|"data":".*?"'
